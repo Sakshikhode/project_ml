@@ -1,0 +1,2400 @@
+[2025-12-31 16:39:53] INFO - ======== Pipeline started ========
+[2025-12-31 16:39:53] INFO - Step 1: Data ingestion
+[2025-12-31 16:39:53] INFO - Attempting to read from MySQL
+[2025-12-31 16:39:53] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2025-12-31 16:39:53] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-01 19:35:31] INFO - ======== Pipeline started ========
+[2026-01-01 19:35:31] INFO - Step 1: Data ingestion
+[2026-01-01 19:35:31] INFO - Attempting to read from MySQL
+[2026-01-01 19:35:31] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-01 19:35:31] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 12:45:34] INFO - ======== Pipeline started ========
+[2026-01-02 12:45:34] INFO - Step 1: Data ingestion
+[2026-01-02 12:45:34] INFO - Attempting to read from MySQL
+[2026-01-02 12:45:34] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 12:45:34] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:01:37] INFO - ======== Pipeline started ========
+[2026-01-02 13:01:37] INFO - Step 1: Data ingestion
+[2026-01-02 13:01:37] INFO - Attempting to read from MySQL
+[2026-01-02 13:01:37] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:01:37] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:02:24] INFO - ======== Pipeline started ========
+[2026-01-02 13:02:24] INFO - Step 1: Data ingestion
+[2026-01-02 13:02:24] INFO - Attempting to read from MySQL
+[2026-01-02 13:02:24] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:02:24] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:05:54] INFO - ======== Pipeline started ========
+[2026-01-02 13:05:54] INFO - Step 1: Data ingestion
+[2026-01-02 13:05:54] INFO - Attempting to read from MySQL
+[2026-01-02 13:05:54] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:05:54] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:06:01] INFO - ======== Pipeline started ========
+[2026-01-02 13:06:01] INFO - Step 1: Data ingestion
+[2026-01-02 13:06:01] INFO - Attempting to read from MySQL
+[2026-01-02 13:06:01] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:06:01] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:07:47] INFO - ======== Pipeline started ========
+[2026-01-02 13:07:47] INFO - Step 1: Data ingestion
+[2026-01-02 13:07:47] INFO - Attempting to read from MySQL
+[2026-01-02 13:07:47] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:07:47] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:19:46] INFO - ======== Pipeline started ========
+[2026-01-02 13:19:46] INFO - Step 1: Data ingestion
+[2026-01-02 13:19:46] INFO - Attempting to read from MySQL
+[2026-01-02 13:19:46] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:19:46] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:25:31] INFO - ======== Pipeline started ========
+[2026-01-02 13:25:31] INFO - Step 1: Data ingestion
+[2026-01-02 13:25:31] INFO - Attempting to read from MySQL
+[2026-01-02 13:25:31] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:25:31] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:39:01] INFO - ======== Pipeline started ========
+[2026-01-02 13:39:01] INFO - Step 1: Data ingestion
+[2026-01-02 13:39:01] INFO - Attempting to read from MySQL
+[2026-01-02 13:39:01] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:39:01] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:42:25] INFO - ======== Pipeline started ========
+[2026-01-02 13:42:25] INFO - Step 1: Data ingestion
+[2026-01-02 13:42:25] INFO - Attempting to read from MySQL
+[2026-01-02 13:42:25] WARNING - MySQL read failed: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8). Falling back to CSV.
+[2026-01-02 13:42:25] ERROR - Pipeline failed
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 28, in ingest_data
+    df = pd.read_sql_table(table, con=engine)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 386, in read_sql_table
+    with pandasSQL_builder(con, schema=schema, need_transaction=True) as pandas_sql:
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 908, in pandasSQL_builder
+    return SQLDatabase(con, schema, need_transaction)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\sql.py", line 1648, in __init__
+    con = self.exit_stack.enter_context(con.connect())
+                                        ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3285, in connect
+    return self._connection_cls(self)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 145, in __init__
+    Connection._handle_dbapi_exception_noconnection(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        err, dialect, engine
+        ^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 2448, in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 143, in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\base.py", line 3309, in raw_connection
+    return self.pool.connect()
+           ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 447, in connect
+    return _ConnectionFairy._checkout(self)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 1264, in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 711, in checkout
+    rec = pool._do_get()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 177, in _do_get
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\impl.py", line 175, in _do_get
+    return self._create_connection()
+           ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 388, in _create_connection
+    return _ConnectionRecord(self)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 673, in __init__
+    self.__connect()
+    ~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 899, in __connect
+    with util.safe_reraise():
+         ~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\util\langhelpers.py", line 224, in __exit__
+    raise exc_value.with_traceback(exc_tb)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\pool\base.py", line 895, in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\create.py", line 661, in connect
+    return dialect.connect(*cargs, **cparams)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\sqlalchemy\engine\default.py", line 630, in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 365, in __init__
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 681, in connect
+    self._request_authentication()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 958, in _request_authentication
+    auth_packet = self._read_packet()
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\connections.py", line 782, in _read_packet
+    packet.raise_for_error()
+    ~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+sqlalchemy.exc.OperationalError: (pymysql.err.OperationalError) (1045, "Access denied for user 'root'@'localhost' (using password: NO)")
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 32, in ingest_data
+    df = pd.read_csv('/mnt/data/laptop_data.csv')
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\parsers\readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+                   ~~~~~~~~~~^
+        f,
+        ^^
+    ...<6 lines>...
+        storage_options=self.options.get("storage_options", None),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\env\Lib\site-packages\pandas\io\common.py", line 873, in get_handle
+    handle = open(
+        handle,
+    ...<3 lines>...
+        newline="",
+    )
+FileNotFoundError: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\pipeline\training_pipeline.py", line 43, in run_pipeline
+    ingestion_artifact: DataIngestionArtifact = ingest_data()
+                                                ~~~~~~~~~~~^^
+  File "C:\Users\Pragati Khode\Desktop\ml_project\laptop_price\components\data_ingestion.py", line 39, in ingest_data
+    raise PricePredictorException(f"Data ingestion failed: {e}")
+laptop_price.exception.PricePredictorException: Data ingestion failed: [Errno 2] No such file or directory: '/mnt/data/laptop_data.csv'
+[2026-01-02 13:46:31] INFO - ======== Pipeline started ========
+[2026-01-02 13:46:31] INFO - Step 1: Data ingestion
+[2026-01-02 13:46:31] INFO - Attempting to read from MySQL
+[2026-01-02 13:46:31] INFO - Read data from MySQL successfully
+[2026-01-02 13:46:31] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-01-02 13:46:31] INFO - Step 2: Data validation (basic checks)
+[2026-01-02 13:46:31] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-01-02 13:46:31] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-01-02 13:46:31] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-01-02 13:46:31] INFO - Data validation passed (validate() ok).
+[2026-01-02 13:46:31] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_raw.csv
+[2026-01-02 13:46:31] INFO - Step 3: Data transformation
+[2026-01-02 13:46:31] INFO - Dropped identifier column: SKU
+[2026-01-02 13:46:31] INFO - Dropped identifier column: Model
+[2026-01-02 13:46:31] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-01-02 13:46:31] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-01-02 13:46:31] INFO - Fitting preprocessor on training features...
+[2026-01-02 13:46:31] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:46:31] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-01-02 13:46:31] INFO - Saved artifacts/transformed/feature_list.json
+[2026-01-02 13:46:31] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:46:31] INFO - Step 4: Model training
+[2026-01-02 13:46:31] INFO - Loading transformed train/test CSVs
+[2026-01-02 13:46:31] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:46:31] INFO - Transforming features using preprocessor
+[2026-01-02 13:46:31] INFO - Training LinearRegression (baseline)
+[2026-01-02 13:46:31] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:46:31] INFO - Training RandomForestRegressor
+[2026-01-02 13:46:32] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-01-02 13:46:32] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-01-02 13:46:32] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-01-02 13:46:32] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-01-02 13:46:32] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-01-02 13:46:32] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-01-02 13:46:32] INFO - Step 5: Model evaluation
+[2026-01-02 13:46:32] INFO - Starting model evaluation...
+[2026-01-02 13:46:32] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:46:32] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:46:32] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-01-02 13:46:32] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-01-02 13:46:32] INFO - Step 6: Model pushing
+[2026-01-02 13:46:32] INFO - Pushed model version to: prediction\models\models\best_model_20260102_134632.joblib
+[2026-01-02 13:46:32] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-01-02 13:46:32] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260102_134632.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-01-02 13:46:32] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-01-02 13:46:32] INFO - ======== Pipeline finished successfully ========
+[2026-01-02 13:54:34] INFO - ======== Pipeline started ========
+[2026-01-02 13:54:34] INFO - Step 1: Data ingestion
+[2026-01-02 13:54:34] INFO - Attempting to read from MySQL
+[2026-01-02 13:54:35] INFO - Read data from MySQL successfully
+[2026-01-02 13:54:35] INFO - Raw data saved at: artifacts\raw\laptop_raw.csv
+[2026-01-02 13:54:35] INFO - Step 2: Data validation (basic checks)
+[2026-01-02 13:54:35] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-01-02 13:54:35] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-01-02 13:54:35] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-01-02 13:54:35] INFO - Data validation passed (validate() ok).
+[2026-01-02 13:54:35] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_raw.csv
+[2026-01-02 13:54:35] INFO - Step 3: Data transformation
+[2026-01-02 13:54:35] INFO - Dropped identifier column: SKU
+[2026-01-02 13:54:35] INFO - Dropped identifier column: Model
+[2026-01-02 13:54:35] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-01-02 13:54:35] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-01-02 13:54:35] INFO - Fitting preprocessor on training features...
+[2026-01-02 13:54:35] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:54:35] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-01-02 13:54:35] INFO - Saved artifacts/transformed/feature_list.json
+[2026-01-02 13:54:35] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:54:35] INFO - Step 4: Model training
+[2026-01-02 13:54:35] INFO - Loading transformed train/test CSVs
+[2026-01-02 13:54:35] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:54:35] INFO - Transforming features using preprocessor
+[2026-01-02 13:54:35] INFO - Training LinearRegression (baseline)
+[2026-01-02 13:54:35] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:54:35] INFO - Training RandomForestRegressor
+[2026-01-02 13:54:35] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-01-02 13:54:35] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-01-02 13:54:35] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-01-02 13:54:35] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-01-02 13:54:35] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-01-02 13:54:35] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-01-02 13:54:35] INFO - Step 5: Model evaluation
+[2026-01-02 13:54:35] INFO - Starting model evaluation...
+[2026-01-02 13:54:35] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:54:35] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:54:35] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-01-02 13:54:35] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-01-02 13:54:35] INFO - Step 6: Model pushing
+[2026-01-02 13:54:35] INFO - Pushed model version to: prediction\models\models\best_model_20260102_135435.joblib
+[2026-01-02 13:54:35] INFO - Archived previous active model to: prediction\models\archive\current_model_20260102_135435.joblib
+[2026-01-02 13:54:35] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-01-02 13:54:35] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260102_135435.joblib', 'archived_previous_active': 'prediction\\models\\archive\\current_model_20260102_135435.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-01-02 13:54:35] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-01-02 13:54:35] INFO - ======== Pipeline finished successfully ========
+[2026-01-02 13:59:43] INFO - ======== Pipeline started ========
+[2026-01-02 13:59:43] INFO - Step 1: Data ingestion
+[2026-01-02 13:59:43] INFO - Starting MySQL data ingestion
+[2026-01-02 13:59:43] INFO - Data loaded from MySQL with shape (5000, 16)
+[2026-01-02 13:59:43] INFO - Raw data saved at artifacts\raw\laptop_data.csv
+[2026-01-02 13:59:43] INFO - Raw data saved at: artifacts\raw\laptop_data.csv
+[2026-01-02 13:59:43] INFO - Step 2: Data validation (basic checks)
+[2026-01-02 13:59:43] INFO - Missing value ratios (top 10):
+{'Secondary_Storage': 0.8116, 'SKU': 0.0, 'Model': 0.0, 'Brand': 0.0, 'CPU': 0.0, 'RAM': 0.0, 'Primary_Storage': 0.0, 'GPU': 0.0, 'Screen_Size': 0.0, 'Resolution': 0.0}
+[2026-01-02 13:59:43] WARNING - Columns with > 30% missing: {'Secondary_Storage': 0.8116}
+[2026-01-02 13:59:43] INFO - Dropped high-NA columns and continuing: ['Secondary_Storage']
+[2026-01-02 13:59:43] INFO - Data validation passed (validate() ok).
+[2026-01-02 13:59:43] INFO - Saved possibly-updated raw dataframe to artifacts\raw\laptop_data.csv
+[2026-01-02 13:59:43] INFO - Step 3: Data transformation
+[2026-01-02 13:59:43] INFO - Dropped identifier column: SKU
+[2026-01-02 13:59:43] INFO - Dropped identifier column: Model
+[2026-01-02 13:59:43] INFO - Numeric cols: ['Screen_Size', 'Weight_kg', 'Battery_Hours']
+[2026-01-02 13:59:43] INFO - Categorical cols: ['Brand', 'CPU', 'RAM', 'Primary_Storage', 'GPU', 'Resolution', 'OS', 'Type', 'Touchscreen']
+[2026-01-02 13:59:43] INFO - Fitting preprocessor on training features...
+[2026-01-02 13:59:43] INFO - Saved preprocessor to: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:59:44] INFO - Saved artifacts/transformed/train.csv and test.csv
+[2026-01-02 13:59:44] INFO - Saved artifacts/transformed/feature_list.json
+[2026-01-02 13:59:44] INFO - Transformer saved at: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:59:44] INFO - Step 4: Model training
+[2026-01-02 13:59:44] INFO - Loading transformed train/test CSVs
+[2026-01-02 13:59:44] INFO - Loading preprocessor from: artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:59:44] INFO - Transforming features using preprocessor
+[2026-01-02 13:59:44] INFO - Training LinearRegression (baseline)
+[2026-01-02 13:59:44] INFO - LinearRegression evaluation -> RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:59:44] INFO - Training RandomForestRegressor
+[2026-01-02 13:59:44] INFO - RandomForest evaluation -> RMSE: 9166.6615, MAE: 6746.8086, R2: 0.9568
+[2026-01-02 13:59:44] INFO - Selected best model: LinearRegression with RMSE = 8243.5040
+[2026-01-02 13:59:44] INFO - Saved best model to: artifacts\model\best_model.joblib
+[2026-01-02 13:59:44] INFO - ModelTrainerArtifact created -> train_score: 0.9656, test_score: 0.9650
+[2026-01-02 13:59:44] INFO - Model saved at: artifacts\model\best_model.joblib
+[2026-01-02 13:59:44] INFO - Train score (R2): 0.9656  Test score (R2): 0.9650
+[2026-01-02 13:59:44] INFO - Step 5: Model evaluation
+[2026-01-02 13:59:44] INFO - Starting model evaluation...
+[2026-01-02 13:59:44] INFO - Loaded model from artifacts\model\best_model.joblib and preprocessor from artifacts\transformed\preprocessor.joblib
+[2026-01-02 13:59:44] INFO - Model Evaluation Completed \u2192 RMSE: 8243.5040, MAE: 5749.0160, R2: 0.9650
+[2026-01-02 13:59:44] INFO - Metrics saved to artifacts\model\model_metrics.json
+[2026-01-02 13:59:44] INFO - Evaluation metrics: {'RMSE': 8243.503973813784, 'MAE': 5749.0160413520925, 'R2': 0.9650240530089602}
+[2026-01-02 13:59:44] INFO - Step 6: Model pushing
+[2026-01-02 13:59:44] INFO - Pushed model version to: prediction\models\models\best_model_20260102_135944.joblib
+[2026-01-02 13:59:44] INFO - Archived previous active model to: prediction\models\archive\current_model_20260102_135944.joblib
+[2026-01-02 13:59:44] INFO - Copied new model to active path: prediction\models\models\current_model.joblib
+[2026-01-02 13:59:44] INFO - Model push info: {'versioned_path': 'prediction\\models\\models\\best_model_20260102_135944.joblib', 'archived_previous_active': 'prediction\\models\\archive\\current_model_20260102_135944.joblib', 'active_path': 'prediction\\models\\models\\current_model.joblib'}
+[2026-01-02 13:59:44] INFO - Pipeline summary written to: artifacts\pipeline_summary.json
+[2026-01-02 13:59:44] INFO - ======== Pipeline finished successfully ========
