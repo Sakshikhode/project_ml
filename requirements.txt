@@ -1,7 +1,12 @@
-streamlit
-numpy
 pandas
+numpy
 scikit-learn
+sqlalchemy
+pymysql
 joblib
-xgboost
+pyyaml
+flask
+notebook
+python-dotenv
+streamlit
 gunicorn
